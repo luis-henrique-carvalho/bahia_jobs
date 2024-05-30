@@ -36,3 +36,5 @@
 
 #  add node modules
 /node_modules
+
+/vendor/assets
