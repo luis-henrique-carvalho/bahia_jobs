@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :applicants
   resources :positions
   resources :companies
   devise_for :users
