@@ -1,13 +1,13 @@
 version: '3.8'
 services:
   database:
-    container_name: project_name
+    container_name: bahia_jobs
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: project_name_development
+      POSTGRES_DB: bahia_jobs_development
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     ports:
