@@ -5,3 +5,4 @@ import "popper"
 import "bootstrap"
 import jQuery from "jquery";
 jQuery('body').css('background-color', '#f2f2f2');
+import 'admin-lte'

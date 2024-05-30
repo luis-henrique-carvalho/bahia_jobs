@@ -8,3 +8,4 @@ pin_all_from 'app/javascript/controllers', under: 'controllers'
 pin 'popper', to: 'popper.js', preload: true
 pin 'bootstrap', to: 'bootstrap.min.js', preload: true
 pin 'jquery', to: 'https://ga.jspm.io/npm:jquery@3.7.0/dist/jquery.js'
+pin 'admin-lte', to: 'admin-lte.js'
