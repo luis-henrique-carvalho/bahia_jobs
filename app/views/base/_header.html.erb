@@ -1,0 +1,41 @@
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+   <div class="container">
+      <%= link_to root_path, class: 'navbar-brand' do %>
+         <span class="brand-text font-weight-light">DEV_JOB/HUB</span>
+      <% end %>
+      <button class="navbar-toggler order-1 collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse order-3 collapse" id="navbarCollapse" style="">
+         <ul class="navbar-nav">
+            <li class="nav-item">
+               <%= link_to 'Home', root_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+               <%= link_to 'New Company', new_company_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item dropdown">
+               <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+               <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                  <li><a href="#" class="dropdown-item">Some action </a></li>
+                  <li><a href="#" class="dropdown-item">Some other action</a></li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+         <% if user_signed_in? %>
+            <li class="nav-item">
+               <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </li>
+         <% else %>
+            <li class="nav-item dropdown">
+               <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item dropdown">
+               <%= link_to 'Cadastro', new_user_registration_path, class: 'nav-link' %>
+            </li>
+         <% end %>
+      </ul>
+   </div>
+</nav>
