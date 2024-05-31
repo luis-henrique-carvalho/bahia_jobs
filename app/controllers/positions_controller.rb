@@ -1,12 +1,10 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: %i[show edit update destroy]
   before_action :authenticate_user!,
-
-
-  # GET /positions or /positions.json
-  def index
-    @positions = Position.all
-  end
+                # GET /positions or /positions.json
+                def index
+                  @positions = Position.all
+                end
 
   # GET /positions/1 or /positions/1.json
   def show; end
@@ -14,6 +12,8 @@ class PositionsController < ApplicationController
   # GET /positions/new
   def new
     @position = Position.new
+    @position.tags.build
+    @existing_tags = Tag.all
   end
 
   # GET /positions/1/edit
@@ -67,6 +67,6 @@ class PositionsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def position_params
     params.require(:position).permit(:name, :career, :contract, :remote, :city, :state, :summary, :description,
-                                     :publish, :company_id)
+                                     :publish, :company_id, existing_tag_ids: [], tags_attributes: %i[id name])
   end
 end

@@ -29,4 +29,22 @@ class Position < ApplicationRecord
 
   has_many :taggings
   has_many :tags, through: :taggings
+
+  accepts_nested_attributes_for :tags
+
+  scope :with_tags, lambda { |tag_names|
+    joins(:tags).where(tags: { name: tag_names }).distinct
+  }
+
+  attr_accessor :existing_tag_ids
+
+  after_save :assign_existing_tags
+
+  private
+
+  def assign_existing_tags
+    return unless existing_tag_ids.present?
+
+    tags << Tag.where(id: existing_tag_ids)
+  end
 end

@@ -2,6 +2,12 @@
 
 <h1>Positions</h1>
 
+<%= form_with url: applicants_path, method: :get, local: true do %>
+  <%= label_tag :tags, "Procurar por tags (separadas por vírgula):" %>
+  <%= text_field_tag :tags, params[:tags] %>
+  <%= submit_tag "Buscar" %>
+<% end %>
+
 <div id="positions" class="row">
   <% @positions.each do |position| %>
     <%= render position %>

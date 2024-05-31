@@ -22,6 +22,15 @@
                             <% end %>
                           </li>
                         </ul>
+                        <div>
+                          <ul class="list-inline">
+                              <% position.tags.each do |tag| %>
+                                  <li class="list-inline-item">
+                                      <span class="badge bg-primary"><%= tag.name %></span>
+                                  </li>
+                              <% end %>
+                          </ul>
+                        </div>
                     </div>
                     <div class="col text-center">
                         <img src="https://t.ctcdn.com.br/lvns56iaSMyHvyTur4JeYS_NYeY=/i606944.png" alt="user-avatar" class="img-circle img-thumbnail">

@@ -3,5 +3,12 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "popper"
 import "bootstrap"
-import jQuery from "jquery";
+import "jquery";
 import 'admin-lte';
+import "select2";
+
+
+document.addEventListener("turbo:load", () => {
+    // Inicializar todos os selects com a classe .select2
+    $('.select2').select2();
+});
