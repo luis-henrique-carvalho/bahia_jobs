@@ -9,11 +9,11 @@
                     <div class="col-9">
                         <h2 class=""><b><%= position.name %></b></h2>
                         <ul class="text-muted d-flex flex-wrap gap-3 p-0" style="list-style-type: none;">
-                          <li class="d-flex gap-2">
+                          <li class="d-flex align-items-center gap-2">
                             <i class="fa-regular fa-calendar-days"></i>
                             <%= position.created_at.strftime("%d/%m/%Y") %>
                           </li>
-                          <li class="d-flex gap-2">
+                          <li class="d-flex align-items-center gap-2">
                             <i class="fa-solid fa-location-dot"></i>
                             <% if position.remote %>
                               Remoto
