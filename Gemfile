@@ -8,6 +8,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap'
 gem 'devise', '~> 4.9'
 gem 'figaro'
+gem 'font-awesome-sass'
 gem 'i18n'
 gem 'image_processing', '~> 1.2'
 gem 'importmap-rails'

@@ -2,12 +2,9 @@
 
 <h1>Positions</h1>
 
-<div id="positions">
+<div id="positions" class="row">
   <% @positions.each do |position| %>
     <%= render position %>
-    <p>
-      <%= link_to "Show this position", position %>
-    </p>
   <% end %>
 </div>
 

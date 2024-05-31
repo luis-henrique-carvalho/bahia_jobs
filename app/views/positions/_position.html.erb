@@ -1,52 +1,47 @@
-<div id="<%= dom_id position %>">
-  <p>
-    <strong>Name:</strong>
-    <%= position.name %>
-  </p>
+<div id="<%= dom_id position %>" class="col-12 col-lg-6 p-2 d-flex align-items-stretch flex-column">
+    <div class="card bg-light d-flex flex-fill">
+        <div class="card-header text-muted border-bottom-0">
+            <%= position.company.name %>
+        </div>
+        <div class="card-body gap-5">
 
-  <p>
-    <strong>Career:</strong>
-    <%= position.career %>
-  </p>
+                <div class="row mb-2">
+                    <div class="col-9">
+                        <h2 class=""><b><%= position.name %></b></h2>
+                        <ul class="text-muted d-flex flex-wrap gap-3 p-0" style="list-style-type: none;">
+                          <li class="d-flex gap-2">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <%= position.created_at.strftime("%d/%m/%Y") %>
+                          </li>
+                          <li class="d-flex gap-2">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <% if position.remote %>
+                              Remoto
+                            <% else %>
+                              <%= position.state %>
+                            <% end %>
+                          </li>
+                        </ul>
+                    </div>
+                    <div class="col text-center">
+                        <img src="https://t.ctcdn.com.br/lvns56iaSMyHvyTur4JeYS_NYeY=/i606944.png" alt="user-avatar" class="img-circle img-thumbnail">
+                    </div>
+                </div>
 
-  <p>
-    <strong>Contract:</strong>
-    <%= position.contract %>
-  </p>
+                <div class="row">
+                    <p class="card-text">
+                        <%= position.summary %>
+                    </p>
+                </div>
 
-  <p>
-    <strong>Remote:</strong>
-    <%= position.remote %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= position.city %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <%= position.state %>
-  </p>
-
-  <p>
-    <strong>Summary:</strong>
-    <%= position.summary %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= position.description %>
-  </p>
-
-  <p>
-    <strong>Publish:</strong>
-    <%= position.publish %>
-  </p>
-
-  <p>
-    <strong>Company:</strong>
-    <%= position.company_id %>
-  </p>
-
+        </div>
+        <div class="card-footer">
+            <div class="text-right">
+                <%= link_to position, class: "btn btn-sm btn-primary" do %>
+                <i class="fas fa-user"></i>
+                Detalhes da vaga
+                <% end %>
+            </div>
+        </div>
+    </div>
 </div>

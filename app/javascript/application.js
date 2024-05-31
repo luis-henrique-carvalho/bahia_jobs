@@ -4,4 +4,4 @@ import "controllers"
 import "popper"
 import "bootstrap"
 import jQuery from "jquery";
-import 'admin-lte'
+import 'admin-lte';
