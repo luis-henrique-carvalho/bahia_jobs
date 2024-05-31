@@ -1,6 +1,6 @@
 class CreatePositions < ActiveRecord::Migration[7.1]
   def change
-    create_table :positions do |t|
+    create_table :positions, id: :uuid do |t|
       t.string :name
       t.integer :career
       t.integer :contract
@@ -10,7 +10,7 @@ class CreatePositions < ActiveRecord::Migration[7.1]
       t.text :summary
       t.text :description
       t.boolean :publish
-      t.references :company, null: false, foreign_key: true
+      t.references :company, null: false, foreign_key: true, type: :uuid
 
       t.timestamps
     end
