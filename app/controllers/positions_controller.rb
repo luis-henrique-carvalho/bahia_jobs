@@ -1,10 +1,13 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: %i[show edit update destroy]
-  before_action :authenticate_user!,
-                # GET /positions or /positions.json
-                def index
-                  @positions = Position.all
-                end
+  before_action :set_search, only: %i[index]
+
+  before_action :authenticate_user!
+
+  # GET /positions or /positions.json
+  def index
+    @positions = @search.result
+  end
 
   # GET /positions/1 or /positions/1.json
   def show; end
@@ -62,6 +65,10 @@ class PositionsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_position
     @position = Position.find(params[:id])
+  end
+
+  def set_search
+    @search = Position.ransack(params[:q])
   end
 
   # Only allow a list of trusted parameters through.

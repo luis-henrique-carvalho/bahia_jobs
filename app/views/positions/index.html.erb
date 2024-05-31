@@ -2,10 +2,14 @@
 
 <h1>Positions</h1>
 
-<%= form_with url: applicants_path, method: :get, local: true do %>
-  <%= label_tag :tags, "Procurar por tags (separadas por vírgula):" %>
-  <%= text_field_tag :tags, params[:tags] %>
-  <%= submit_tag "Buscar" %>
+<%= search_form_for @search, url: positions_path, method: :get, class: "position-relative", data: { turbo_frame: "positions" } do |form| %>
+  <div class="row col-auto g-2">
+    <div class="col-auto">
+        <div class="search-box">
+            <%= form.search_field :tags_name_cont, class: "form-control search-input", placeholder: "Procurar" %>
+            <span class="fas fa-search search-box-icon"></span>
+        </div>
+    </div>
 <% end %>
 
 <div id="positions" class="row">
