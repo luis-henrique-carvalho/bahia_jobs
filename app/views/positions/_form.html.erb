@@ -1,67 +1,22 @@
-<%= form_with(model: position) do |form| %>
-  <% if position.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(position.errors.count, "error") %> prohibited this position from being saved:</h2>
 
-      <ul>
-        <% position.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@position) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :career %>
+    <%= f.input :contract %>
+    <%= f.input :remote %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :summary %>
+    <%= f.input :description %>
+    <%= f.input :publish %>
+    <%= f.association :company %>
   </div>
 
-  <div>
-    <%= form.label :career, style: "display: block" %>
-    <%= form.number_field :career %>
-  </div>
-
-  <div>
-    <%= form.label :contract, style: "display: block" %>
-    <%= form.number_field :contract %>
-  </div>
-
-  <div>
-    <%= form.label :remote, style: "display: block" %>
-    <%= form.check_box :remote %>
-  </div>
-
-  <div>
-    <%= form.label :city, style: "display: block" %>
-    <%= form.text_field :city %>
-  </div>
-
-  <div>
-    <%= form.label :state, style: "display: block" %>
-    <%= form.text_field :state %>
-  </div>
-
-  <div>
-    <%= form.label :summary, style: "display: block" %>
-    <%= form.text_area :summary %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :publish, style: "display: block" %>
-    <%= form.check_box :publish %>
-  </div>
-
-  <div>
-    <%= form.label :company_id, style: "display: block" %>
-    <%= form.text_field :company_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= f.button :submit %>
   </div>
 <% end %>
