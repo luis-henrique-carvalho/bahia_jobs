@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      position:
+        one: Cargo
+        other: Cargos
+    attributes:
+      position:
+        name: Nome
+        career: Carreira
+        city: Cidade
+        state: Estado
+        contract: Contrato
+        publish: Publico
+        remote: Remoto
+        description: Descricao
+        summary: Resumo
