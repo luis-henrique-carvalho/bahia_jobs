@@ -91,14 +91,8 @@ GEM
     awesome_print (1.9.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
-    better_errors (2.10.1)
-      erubi (>= 1.0.0)
-      rack (>= 0.9.0)
-      rouge (>= 1.0.0)
     bigdecimal (3.1.8)
     bindex (0.8.1)
-    binding_of_caller (1.0.1)
-      debug_inspector (>= 1.2.0)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     bootstrap (5.3.3)
@@ -117,7 +111,6 @@ GEM
     case_transform (0.2)
       activesupport
     choice (0.2.0)
-    coderay (1.1.3)
     concurrent-ruby (1.3.1)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -126,7 +119,6 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    debug_inspector (1.2.0)
     devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -195,7 +187,6 @@ GEM
       thin
     marcel (1.0.4)
     matrix (0.4.2)
-    method_source (1.1.0)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.23.1)
@@ -222,11 +213,6 @@ GEM
       racc
     pg (1.5.6)
     popper_js (2.11.8)
-    pry (0.14.2)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-    pry-rails (0.3.9)
-      pry (>= 0.10.4)
     psych (5.1.2)
       stringio
     public_suffix (5.0.5)
@@ -301,7 +287,6 @@ GEM
       railties (>= 5.2)
     rexml (3.2.8)
       strscan (>= 3.0.9)
-    rouge (4.2.1)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.0)
@@ -421,8 +406,6 @@ DEPENDENCIES
   annotate
   awesome_print
   bcrypt (~> 3.1.7)
-  better_errors
-  binding_of_caller
   bootsnap
   bootstrap
   capybara
@@ -437,8 +420,6 @@ DEPENDENCIES
   kredis
   mailcatcher
   pg (~> 1.1)
-  pry
-  pry-rails
   puma (>= 5.0)
   pundit (~> 2.3)
   rack-mini-profiler

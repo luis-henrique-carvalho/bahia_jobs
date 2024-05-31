@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'home#index'
   resources :applicants
+  root 'home#index'
   resources :positions
   resources :companies
   devise_for :users

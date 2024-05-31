@@ -31,15 +31,11 @@ group :development, :test do
   gem 'awesome_print'
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'faker'
-  gem 'pry'
-  gem 'pry-rails'
   gem 'rails-erd'
   gem 'rspec-rails'
 end
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'mailcatcher'
   gem 'rack-mini-profiler'
   gem 'spring'

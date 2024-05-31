@@ -11,4 +11,10 @@
   <% end %>
 </div>
 
-<%= link_to "New company", new_company_path %>
+<% if current_user.company %>
+  <p>
+    <%= link_to "Edit your company", edit_company_path(current_user.company) %>
+  </p>
+<% else %>
+  <%= link_to "New company", new_company_path %>
+<% end %>
