@@ -26,4 +26,7 @@
 #
 class Position < ApplicationRecord
   belongs_to :company
+
+  has_many :taggings
+  has_many :tags, through: :taggings
 end
