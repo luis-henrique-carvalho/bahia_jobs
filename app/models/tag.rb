@@ -8,6 +8,14 @@
 #  updated_at :datetime         not null
 #
 class Tag < ApplicationRecord
-    has_many :taggings, dependent: :destroy
-    has_many :positions, through: :taggings
+  has_many :taggings, dependent: :destroy
+  has_many :positions, through: :taggings
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[positions]
+  end
 end

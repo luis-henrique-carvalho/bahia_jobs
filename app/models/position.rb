@@ -40,6 +40,14 @@ class Position < ApplicationRecord
 
   after_save :assign_existing_tags
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name career contract remote city state summary description publish company_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[company tags]
+  end
+
   private
 
   def assign_existing_tags
