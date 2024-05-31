@@ -27,7 +27,7 @@
 class Position < ApplicationRecord
   belongs_to :company
 
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
   accepts_nested_attributes_for :tags
@@ -45,6 +45,13 @@ class Position < ApplicationRecord
   def assign_existing_tags
     return unless existing_tag_ids.present?
 
-    tags << Tag.where(id: existing_tag_ids)
+    current_tag_ids = tags.pluck(:id)
+
+    tags_to_remove_ids = current_tag_ids - existing_tag_ids
+
+    taggings.where(tag_id: tags_to_remove_ids).destroy_all
+
+    tags_to_add = Tag.where(id: existing_tag_ids - current_tag_ids)
+    tags << tags_to_add
   end
 end

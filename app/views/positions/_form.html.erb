@@ -6,25 +6,39 @@
     <%= f.input :name %>
     <%= f.input :career %>
     <%= f.input :contract %>
-    <%= f.input :remote %>
+    <div class="form-group">
+      <div class="custom-control custom-switch">
+        <%= f.check_box :remote, class: 'custom-control-input' %>
+        <%= f.label :remote, class: 'custom-control-label'%>
+      </div>
+    </div>
     <%= f.input :city %>
     <%= f.input :state %>
     <%= f.input :summary %>
     <%= f.input :description %>
-    <%= f.input :publish %>
-    <%= f.association :company %>
+    <div class="form-group">
+      <div class="custom-control custom-switch">
+        <%= f.check_box :publish, class: 'custom-control-input' %>
+        <%= f.label :publish, class: 'custom-control-label'%>
+      </div>
+    </div>
+    <%= f.association :company, include_blank: false %>
 
     <div class="form-group">
       <%= f.label :existing_tag_ids, "Select Existing Tags" %>
-      <%= f.select :existing_tag_ids, Tag.all.map { |tag| [tag.name, tag.id] }, {}, { multiple: true, class: "form-control select2" } %>
+      <%= f.select :existing_tag_ids, Tag.all.map { |tag| [tag.name, tag.id] }, {
+        include_blank: false,
+        selected: position.tags.map(&:id)
+      }, { multiple: true, class: "form-control select2" } %>
     </div>
 
-    <%= f.simple_fields_for :tags do |tag| %>
-      <div class="nested-fields">
-        <%= tag.input :name, label: "Tag" %>
-      </div>
+    <% if f.object.new_record? %>
+      <%= f.simple_fields_for :tags do |tag| %>
+        <div class="nested-fields">
+          <%= tag.input :name, label: "Tag" %>
+        </div>
+      <% end %>
     <% end %>
-
   </div>
 
   <div class="form-actions">

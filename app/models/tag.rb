@@ -8,6 +8,6 @@
 #  updated_at :datetime         not null
 #
 class Tag < ApplicationRecord
-    has_many :taggings
+    has_many :taggings, dependent: :destroy
     has_many :positions, through: :taggings
 end

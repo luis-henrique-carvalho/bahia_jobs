@@ -18,11 +18,18 @@
 @import "css/adminlte/adminlte.min.css";
 @import "font-awesome";
 @import "css/select2/select2.css";
+@import "css/select2/select2.min.css";
 
+// Utilitários de estilo
 .clamp-text {
   display: -webkit-box;
   -webkit-line-clamp: 4;
-  /* Número de linhas que você quer exibir */
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+// Estilos do Select2
+.select2-container--default .select2-selection__choice {
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
 }
