@@ -12,94 +12,91 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/applicants", type: :request do
-  
+RSpec.describe '/applicants', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Applicant. As you add validations to Applicant, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       Applicant.create! valid_attributes
       get applicants_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       applicant = Applicant.create! valid_attributes
       get applicant_url(applicant)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_applicant_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
+  describe 'GET /edit' do
+    it 'renders a successful response' do
       applicant = Applicant.create! valid_attributes
       get edit_applicant_url(applicant)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Applicant" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Applicant' do
+        expect do
           post applicants_url, params: { applicant: valid_attributes }
-        }.to change(Applicant, :count).by(1)
+        end.to change(Applicant, :count).by(1)
       end
 
-      it "redirects to the created applicant" do
+      it 'redirects to the created applicant' do
         post applicants_url, params: { applicant: valid_attributes }
         expect(response).to redirect_to(applicant_url(Applicant.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Applicant" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new Applicant' do
+        expect do
           post applicants_url, params: { applicant: invalid_attributes }
-        }.to change(Applicant, :count).by(0)
+        end.to change(Applicant, :count).by(0)
       end
 
-    
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post applicants_url, params: { applicant: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
+      end
 
-      it "updates the requested applicant" do
+      it 'updates the requested applicant' do
         applicant = Applicant.create! valid_attributes
         patch applicant_url(applicant), params: { applicant: new_attributes }
         applicant.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the applicant" do
+      it 'redirects to the applicant' do
         applicant = Applicant.create! valid_attributes
         patch applicant_url(applicant), params: { applicant: new_attributes }
         applicant.reload
@@ -107,26 +104,24 @@ RSpec.describe "/applicants", type: :request do
       end
     end
 
-    context "with invalid parameters" do
-    
+    context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         applicant = Applicant.create! valid_attributes
         patch applicant_url(applicant), params: { applicant: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested applicant" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested applicant' do
       applicant = Applicant.create! valid_attributes
-      expect {
+      expect do
         delete applicant_url(applicant)
-      }.to change(Applicant, :count).by(-1)
+      end.to change(Applicant, :count).by(-1)
     end
 
-    it "redirects to the applicants list" do
+    it 'redirects to the applicants list' do
       applicant = Applicant.create! valid_attributes
       delete applicant_url(applicant)
       expect(response).to redirect_to(applicants_url)

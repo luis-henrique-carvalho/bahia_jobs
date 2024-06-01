@@ -33,6 +33,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'faker'
+  gem "factory_bot_rails"
   gem 'rails-erd'
   gem 'rspec-rails'
 end
