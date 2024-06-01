@@ -4,7 +4,8 @@
   <div class="row col-auto g-2">
     <div class="form-group">
       <%= form.label :tags_id_in, "Pesquise sua vaga por Tags" %>
-      <%= form.select :tags_id_in, Tag.all.map { |tag| [tag.name, tag.id] }, { include_blank: false }, { multiple: true, class: "form-control select2", onchange: "this.form.submit()" } %>
+      <%= form.select :tags_id_in, Tag.all.map { |tag| [tag.name, tag.id] }, { include_blank: false },
+      { multiple: true, class: "form-control select2", onchange: "this.form.submit()" } %>
     </div>
   </div>
 <% end %>

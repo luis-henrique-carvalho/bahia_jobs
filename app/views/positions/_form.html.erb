@@ -2,18 +2,25 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
+  <div class="card-body">
     <%= f.input :name %>
-    <%= f.input :career %>
-    <%= f.input :contract %>
+    <div class="row">
+    <%= f.input :career, collection: Position.careers.keys.map { |career| [t("activerecord.attributes.position.careers.#{career}"), career] },
+     include_blank: false , wrapper_html: { class: 'col' } %>
+    <%= f.input :contract, collection: Position.contracts.keys.map { |contract| [t("activerecord.attributes.position.contracts.#{contract}"), contract] },
+     include_blank: false , wrapper_html: { class: 'col' } %>
+    </div>
     <div class="form-group">
       <div class="custom-control custom-switch">
         <%= f.check_box :remote, class: 'custom-control-input' %>
         <%= f.label :remote, class: 'custom-control-label'%>
       </div>
     </div>
-    <%= f.input :city %>
-    <%= f.input :state %>
+    <div class="row">
+      <%= f.input :city, wrapper_html: { class: 'col' } %>
+      <%= f.input :state, wrapper_html: { class: 'col' } %>
+    </div>
+
     <%= f.input :summary %>
     <%= f.input :description %>
     <div class="form-group">
@@ -25,23 +32,17 @@
     <%= f.association :company, include_blank: false %>
 
     <div class="form-group">
-      <%= f.label :existing_tag_ids, "Select Existing Tags" %>
+      <%= f.label :existing_tag_ids, "Selecione algumas habilidades pra sua vaga" %>
       <%= f.select :existing_tag_ids, Tag.all.map { |tag| [tag.name, tag.id] }, {
         include_blank: false,
         selected: position.tags.map(&:id)
       }, { multiple: true, class: "form-control select2" } %>
     </div>
-
-    <% if f.object.new_record? %>
-      <%= f.simple_fields_for :tags do |tag| %>
-        <div class="nested-fields">
-          <%= tag.input :name, label: "Tag" %>
-        </div>
-      <% end %>
-    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<div class="card-footer text-right">
+  <%= f.submit "Salvar", class: "btn btn-primary" %>
+  <%= link_to "Cancelar", positions_path, class: "btn btn-secondary" %>
+</div>
+
 <% end %>

@@ -1,9 +1,12 @@
-<h1>New position</h1>
+<%= render "shared/content_header", page_title: "Nova Vaga" do %>
+  <li class="breadcrumb-item"><%= link_to "Vagas", positions_path %></li>
+  <li class="breadcrumb-item active">Nova Vaga</li>
+<% end %>
 
-<%= render "form", position: @position %>
 
-<br>
-
-<div>
-  <%= link_to "Back to positions", positions_path %>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title pt-1">Adicione uma nova vaga</h3>
+    </div>
+    <%= render "form", position: @position %>
 </div>

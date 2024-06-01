@@ -27,6 +27,24 @@
 class Position < ApplicationRecord
   belongs_to :company
 
+  enum career: {
+    developer: 0,
+    designer: 1,
+    marketing: 2,
+    sales: 3,
+    support: 4,
+    management: 5,
+    finance: 6,
+    hr: 7,
+    other: 8
+  }
+
+  enum contract: {
+    clt: 0,
+    pj: 1,
+    frelancer: 2
+  }
+
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
