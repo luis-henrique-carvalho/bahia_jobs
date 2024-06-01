@@ -1,17 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "applicants/show", type: :view do
+RSpec.describe 'applicants/show', type: :view do
+  let!(:user) { create(:user) }
+  let!(:position) { create(:position) }
+
   before(:each) do
     assign(:applicant, Applicant.create!(
-      name: "Name",
-      email: "Email",
-      phone: "Phone",
-      user: nil,
-      position: nil
-    ))
+                         name: 'Name',
+                         email: 'Email',
+                         phone: 'Phone',
+                         user:,
+                         position:
+                       ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Email/)

@@ -1,22 +1,24 @@
 require 'rails_helper'
 
-RSpec.describe "positions/show", type: :view do
+RSpec.describe 'positions/show', type: :view do
+  let(:company) { create(:company) }
+
   before(:each) do
     assign(:position, Position.create!(
-      name: "Name",
-      career: 2,
-      contract: 3,
-      remote: false,
-      city: "City",
-      state: "State",
-      summary: "MyText",
-      description: "MyText",
-      publish: false,
-      company: nil
-    ))
+                        name: 'Name',
+                        career: 2,
+                        contract: 2,
+                        remote: false,
+                        city: 'City',
+                        state: 'State',
+                        summary: 'MyText',
+                        description: 'MyText',
+                        publish: false,
+                        company:
+                      ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/2/)
