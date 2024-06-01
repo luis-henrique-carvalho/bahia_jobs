@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
+  before_action :redirect_if_company_present, only: [:new]
   before_action :authenticate_user!
 
   # GET /companies or /companies.json
@@ -65,6 +66,10 @@ class CompaniesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def company_params
-    params.require(:company).permit(:name, :url, :user_id)
+    params.require(:company).permit(:name, :url, :logo)
+  end
+
+  def redirect_if_company_present
+    redirect_to edit_company_url(current_user.company) if current_user.company.present?
   end
 end
