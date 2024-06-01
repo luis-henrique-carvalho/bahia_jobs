@@ -1,5 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'simplecov'
+require 'simplecov_json_formatter'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
@@ -7,6 +9,23 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require_relative 'support/factory_bot'
 require_relative 'support/chrome'
+require_relative 'support/request_helpers'
+require_relative 'support/api_helper'
+require_relative 'support/web_helper'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+                                                                 SimpleCov::Formatter::JSONFormatter,
+                                                                 SimpleCov::Formatter::HTMLFormatter
+                                                               ])
+
+SimpleCov.start do
+  add_group 'Config', 'config'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Libs', 'lib'
+  add_group 'Models', 'app/models'
+  add_group 'Serializers', 'app/serializers'
+  add_group 'Specs', 'spec'
+end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -64,4 +83,17 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include Request::JsonHelpers, type: :request
+  config.include ApiHelper, type: :request
+  config.include WebHelper, type: :system
+  config.include Devise::Test::IntegrationHelpers, type: :model
+  config.include Devise::Test::IntegrationHelpers, type: :system
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
