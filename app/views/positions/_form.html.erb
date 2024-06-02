@@ -36,7 +36,7 @@
       <%= f.select :existing_tag_ids, Tag.all.map { |tag| [tag.name, tag.id] }, {
         include_blank: false,
         selected: position.tags.map(&:id)
-      }, { multiple: true, class: "form-control select2" } %>
+      }, { multiple: true, class: "form-control select2", data: { controller: "select2" } } %>
     </div>
   </div>
 

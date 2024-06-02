@@ -45,7 +45,7 @@
         </div>
         <div class="card-footer">
             <div class="text-right">
-                <%= link_to position, class: "btn btn-sm btn-primary" do %>
+                <%= link_to position, class: "btn btn-sm btn-primary", data: { turbo_frame: "_top" } do %>
                 <i class="fas fa-user"></i>
                 Detalhes da vaga
                 <% end %>
