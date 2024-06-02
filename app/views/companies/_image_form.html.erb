@@ -1,14 +1,6 @@
 <%= f.label :logo, "Logo do PDV", class: "form-label" %>
 <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="1" data-dropzone-accepted-files="image/*" data-dropzone-max-files="1" data-upload-multiple="false">
   <%= f.file_field :logo, direct_upload: true, data: { dropzone_target: 'input' } %>
-  <div class="dropzone-msg dz-message needsclick p-4 text-center">
-    <div class="d-flex flex-column justify-content-center text-gray-600 align-items-center gap-2 mb-5">
-      <i class="fas fa-image fs-7"></i>
-      <span class="dropzone-msg-title">Adicione uma<br>imagem</span>
-      <span class="dropzone-msg-desc">240x240 px</span>
-    </div>
-    <span class="dropzone-msg-desc">Tamanho do arquivo: Máximo 1 mb<br>Formatos suportados: PNG, SVG, JPG, WEBP </span>
-  </div>
 </div>
 <% if f.object.errors.has_key?(:logo) %>
   <div class="invalid-feedback d-block"> <%= f.object.errors[:logo].join(", ") %></div>
