@@ -4,6 +4,9 @@
 #
 # Example:
 #
-['Rais', 'Java', 'Python', 'CSS', 'Ruby', 'HTML', 'JavaScript', 'C++', 'C#', 'PHP'].each do |name|
-  Tag.find_or_create_by(name:)
+user = FactoryBot.create(:user)
+company = FactoryBot.create(:company, user:)
+
+10.times do
+  FactoryBot.create(:position, :with_tags, company:)
 end
