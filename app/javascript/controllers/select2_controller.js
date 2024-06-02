@@ -5,8 +5,14 @@ import "select2";
 // Connects to data-controller="select2"
 export default class extends Controller {
     connect() {
-        $(document).ready(function () {
-            $('.select2').select2();
-        });
+        console.log('Select2 connected');
+    }
+
+    initialize() {
+        $(this.element).select2();
+    }
+
+    disconnect() {
+        $(this.element).select2('destroy');
     }
 }
