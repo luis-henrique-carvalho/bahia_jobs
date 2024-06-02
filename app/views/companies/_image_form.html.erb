@@ -1,7 +1,13 @@
 <%= f.label :logo, "Logo do PDV", class: "form-label" %>
+
+<% if @company.logo.attached? %>
+  <%= image_tag @company.logo, class: "img-fluid mb-2" %>
+<% end %>
+
 <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="1" data-dropzone-accepted-files="image/*" data-dropzone-max-files="1" data-upload-multiple="false">
   <%= f.file_field :logo, direct_upload: true, data: { dropzone_target: 'input' } %>
 </div>
+
 <% if f.object.errors.has_key?(:logo) %>
   <div class="invalid-feedback d-block"> <%= f.object.errors[:logo].join(", ") %></div>
 <% end %>

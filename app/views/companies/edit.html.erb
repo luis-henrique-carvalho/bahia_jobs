@@ -1,8 +1,16 @@
-<h1>Editing company</h1>
+<%= render "shared/content_header", page_title: "Editar Empresa" do %>
+  <li class="breadcrumb-item"><%= link_to "Vagas", positions_path %></li>
+  <li class="breadcrumb-item active">Editar <%= @company.name %></li>
+<% end %>
 
-<%= render "form", company: @company %>
 
-<br>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title pt-1">Empresa: <%=@company.name %></h3>
+    </div>
+    <%= render "form", company: @company %>
+</div>
+
 
 <div>
   <%= link_to "Show this company", @company %> |

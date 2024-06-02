@@ -3,22 +3,19 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :url %>
+  <div class="card-body">
+    <div class="form-inputs">
+      <%= f.input :name %>
+      <%= f.input :url %>
 
-  <% if @company.logo.attached? %>
-    <div>
-      <%= image_tag @company.logo %>
-    </div>
-  <% end %>
-
-    <div class="form-group">
-      <%= render "image_form", f: f %>
+      <div class="form-group">
+        <%= render "image_form", f: f %>
+      </div>
     </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="card-footer text-right">
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", companies_path, class: "btn btn-secondary" %>
   </div>
 <% end %>

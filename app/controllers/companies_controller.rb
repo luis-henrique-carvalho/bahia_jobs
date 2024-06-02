@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
   before_action :redirect_if_company_present, only: [:new]
+  before_action :purge_logo, only: [:update]
   before_action :authenticate_user!
 
   # GET /companies or /companies.json
@@ -67,6 +68,10 @@ class CompaniesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def company_params
     params.require(:company).permit(:name, :url, :logo)
+  end
+
+  def purge_logo
+    @company.logo.purge if @company.logo.attached?
   end
 
   def redirect_if_company_present
