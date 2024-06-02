@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= search_form_for @search, url: positions_path, method: :get, class: "position-relative" do |form| %>
+<%= search_form_for @search, url: positions_path, method: :get, class: "position-relative" , data: { controller: "select2", turbo_frame: "_top" } do |form| %>
   <div class="row col-auto g-2">
     <div class="form-group">
       <%= form.label :tags_id_in, "Pesquise sua vaga por Tags" %>
