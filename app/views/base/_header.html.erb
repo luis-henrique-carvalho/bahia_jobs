@@ -23,7 +23,9 @@
             Empresa
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Sua empresa</a></li>
+            <li>
+              <%= link_to 'Sua empresa', companies_path, class: 'dropdown-item' %>
+            </li>
             <li><a class="dropdown-item" href="#">Cadastrar empresa</a></li>
             <li><a class="dropdown-item" href="#">Editar empresa</a></li>
             <li><a class="dropdown-item" href="#">Excluir empresa</a></li>
