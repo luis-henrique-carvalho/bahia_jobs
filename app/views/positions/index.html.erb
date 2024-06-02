@@ -13,11 +13,9 @@
 <h1>Positions</h1>
 
 <%= turbo_frame_tag "positions_frame" do %>
-  <div id="positions" class="row">
     <% @positions.each do |position| %>
-      <%= render position %>
+      <%= render "position_card", position: position %>
     <% end %>
-  </div>
 <% end %>
 
 <%= link_to "New position", new_position_path %>
