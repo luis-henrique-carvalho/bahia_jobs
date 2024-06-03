@@ -1,0 +1,7 @@
+pt-BR:
+  pagy:
+    nav:
+      prev: "Anterior"
+      next: "Próxima"
+      first: "Primeira"
+      last: "Última"

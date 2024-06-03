@@ -7,6 +7,7 @@ class PositionsController < ApplicationController
   # GET /positions or /positions.json
   def index
     @positions = @search.result
+    @pagy, @positions = pagy(@positions)
   end
 
   # GET /positions/1 or /positions/1.json
