@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :position do
-    name { Faker::Job.title }
+    name { Faker::Job.unique.title }
     career { Position.careers.keys.sample }
     city { Faker::Address.city }
     contract { Position.contracts.keys.sample }

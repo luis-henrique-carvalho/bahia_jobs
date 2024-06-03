@@ -3,13 +3,15 @@
 # Table name: positions
 #
 #  id          :uuid             not null, primary key
-#  career      :integer
+#  career      :integer          not null
 #  city        :string
-#  contract    :integer
+#  contract    :integer          not null
 #  description :text
-#  name        :string
-#  publish     :boolean
-#  remote      :boolean
+#  name        :string           not null
+#  publish     :boolean          not null
+#  remote      :boolean          not null
+#  salary_max  :decimal(10, 2)   default(0.0), not null
+#  salary_min  :decimal(10, 2)   default(0.0), not null
 #  state       :string
 #  summary     :text
 #  created_at  :datetime         not null

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_01_045525) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_02_225453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,18 +64,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_01_045525) do
   end
 
   create_table "positions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.integer "career"
-    t.integer "contract"
-    t.boolean "remote"
+    t.string "name", null: false
+    t.integer "career", null: false
+    t.integer "contract", null: false
+    t.boolean "remote", null: false
     t.string "city"
     t.string "state"
     t.text "summary"
     t.text "description"
-    t.boolean "publish"
+    t.boolean "publish", null: false
     t.uuid "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "salary_min", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "salary_max", precision: 10, scale: 2, default: "0.0", null: false
     t.index ["company_id"], name: "index_positions_on_company_id"
   end
 

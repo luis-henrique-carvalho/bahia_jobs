@@ -64,11 +64,11 @@ class PositionsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_position
-    @position = Position.find(params[:id])
+    @position = Position.includes(:tags, :company).find(params[:id])
   end
 
   def set_search
-    @search = Position.ransack(params[:q])
+    @search = Position.includes(:tags, :company).ransack(params[:q])
   end
 
   # Only allow a list of trusted parameters through.
