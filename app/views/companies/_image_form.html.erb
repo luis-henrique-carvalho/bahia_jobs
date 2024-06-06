@@ -6,11 +6,13 @@
   </div>
 <% end %>
 
+<%# TODO: fix - When company updated, logo is remove %>
+
 <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone"
                                                     data-dropzone-max-file-size="1"
                                                     data-dropzone-accepted-files="image/*"
-                                                    data-dropzone-max-files="3"
-                                                    data-upload-multiple="true">
+                                                    data-dropzone-max-files="1"
+                                                    data-upload-multiple="false">
   <%= f.file_field :logo, direct_upload: true, data: { dropzone_target: 'input' } %>
 </div>
 
