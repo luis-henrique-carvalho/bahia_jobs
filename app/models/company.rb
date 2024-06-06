@@ -5,7 +5,6 @@
 #  id             :uuid             not null, primary key
 #  contact_email  :string
 #  contact_phone  :string
-#  description    :text
 #  employee_count :integer
 #  founded_date   :date
 #  name           :string
@@ -27,7 +26,7 @@ class Company < ApplicationRecord
   belongs_to :user
   has_one_attached :logo, dependent: :destroy
 
-  validates :name, :description, :summary, :founded_date, :employee_count, presence: true
+  validates :name, :summary, :founded_date, :employee_count, presence: true
   validates :contact_email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   has_many :positions, dependent: :destroy
