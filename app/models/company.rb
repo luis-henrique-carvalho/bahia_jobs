@@ -2,12 +2,17 @@
 #
 # Table name: companies
 #
-#  id         :uuid             not null, primary key
-#  name       :string
-#  url        :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :uuid             not null
+#  id             :uuid             not null, primary key
+#  contact_email  :string
+#  contact_phone  :string
+#  description    :text
+#  employee_count :integer
+#  founded_date   :date
+#  name           :string
+#  url            :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :uuid             not null
 #
 # Indexes
 #

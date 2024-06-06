@@ -15,3 +15,15 @@ pt-BR:
         remote: Remoto
         description: Descricao
         summary: Resumo
+  enums:
+    position:
+      career:
+        developer: "Desenvolvedor"
+        designer: "Designer"
+        marketing: "Marketing"
+        sales: "Vendas"
+        support: "Suporte"
+        management: "Gestão"
+        finance: "Finanças"
+        hr: "Recursos Humanos"
+        other: "Outro"
