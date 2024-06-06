@@ -9,6 +9,7 @@
 #  employee_count :integer
 #  founded_date   :date
 #  name           :string
+#  summary        :text
 #  url            :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

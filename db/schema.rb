@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_010713) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
+    t.text "summary"
     t.string "contact_phone"
     t.string "contact_email"
     t.date "founded_date"
