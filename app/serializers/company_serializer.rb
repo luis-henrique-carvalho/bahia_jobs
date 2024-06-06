@@ -23,6 +23,12 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class CompanySerializer < ActiveModel::Serializer
-  attributes :id, :name, :url
+  include Rails.application.routes.url_helpers
+
+  attributes :id, :name, :url, :logo_url, :summary, :founded_date, :employee_count, :contact_email, :contact_phone
   has_one :user
+
+  def logo_url
+    object.logo.attached? ? rails_blob_url(object.logo, only_path: true) : nil
+  end
 end

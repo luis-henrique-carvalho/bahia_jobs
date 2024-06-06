@@ -4,4 +4,5 @@ Pagy::DEFAULT[:size]  = [1, 4, 4, 1] # nav bar links
 # Better user experience handled automatically
 require 'pagy/extras/overflow'
 require 'pagy/extras/bootstrap'
-Pagy::DEFAULT[:overflow] = :last_page
+require 'pagy/extras/metadata'
+Pagy::DEFAULT[:overflow] = %i[prev_url next_url count page last_url page_url]
