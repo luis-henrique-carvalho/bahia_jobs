@@ -1,10 +1,18 @@
-<p style="color: green"><%= notice %></p>
+<%= render "shared/content_header", page_title: "Visualizar vaga" do %>
+  <li class="breadcrumb-item"><%= link_to "Vagas", positions_path %></li>
+  <li class="breadcrumb-item active">Detalhes</li>
+<% end %>
 
-<%= render @position %>
+<div class="card card-primary">
+    <div class="card-header">
+        <div class="d-flex justify-content-center aling-items-center">
+            <h3 class="card-title mb-0 p-2"><span class="fw-bold">Detalhes da vaga:</span> <%= @position.name %></h3>
+        </div>
+    </div>
+    <%= render @position %>
 
-<div>
-  <%= link_to "Edit this position", edit_position_path(@position) %> |
-  <%= link_to "Back to positions", positions_path %>
-
-  <%= button_to "Destroy this position", @position, method: :delete %>
+    <div class="card-footer text-right">
+      <%= link_to "Aplicar para vaga", @position, class: "btn btn-primary" %>
+      <%= link_to "Cancelar inscrição", positions_path, class: "btn btn-secondary" %>
+    </div>
 </div>

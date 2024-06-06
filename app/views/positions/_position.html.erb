@@ -1,109 +1,91 @@
-
-<div class="card">
-    <div class="card-header">
-        <div class="d-flex justify-content-center aling-items-center">
-            <h3 class="card-title mb-0 p-2"><span class="text-primary fw-bold">Detalhes da vaga:</span> <%= position.name %></h3>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
-                <div class="row">
-                    <div class="col-12 col-sm-4">
-                        <div class="info-box bg-light">
-                            <div class="info-box-content">
-                                <span class="info-box-text text-center text-muted">Tipo de contratação</span>
-                                <span class="info-box-number text-center text-muted mb-0"><%= position.contract.upcase %></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-4">
-                        <div class="info-box bg-light">
-                            <div class="info-box-content">
-                                <span class="info-box-text text-center text-muted">Area de atuação</span>
-                                <span class="info-box-number text-center text-muted mb-0">
-                                    <%= I18n.t("enums.position.career.#{position.career}") %>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-4">
-                        <div class="info-box bg-light">
-                            <div class="info-box-content">
-                                <% if position.remote %>
-                                    <span class="info-box-text text-center text-muted">Local de trabalho</span>
-                                    <span class="info-box-number text-center text-muted mb-0">Remoto</span>
-                                <% else %>
-                                    <span class="info-box-text text-center text-muted">Local de trabalho</span>
-                                    <span class="info-box-number text-center text-muted mb-0"><%= position.state %></span>
-                                <% end %>
-                            </div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+            <div class="row">
+                <div class="col-12 col-sm-4">
+                    <div class="info-box bg-light">
+                        <div class="info-box-content">
+                            <span class="info-box-text text-center text-muted">Tipo de contratação</span>
+                            <span class="info-box-number text-center text-muted mb-0"><%= position.contract.upcase %></span>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <h4>Descrição da vaga</h4>
-                        <div class="post">
-                            <p>
-                                <%= position.description %>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-                <div class="row mb-4">
-                    <div class="user-block">
-                            <%= image_tag position.company.logo, class: "img-circle img-bordered-sm", style: "max-height: 400px" %>
-                            <span class="username">
-                            <a href="#"><%= position.company.name %></a>
+                <div class="col-12 col-sm-4">
+                    <div class="info-box bg-light">
+                        <div class="info-box-content">
+                            <span class="info-box-text text-center text-muted">Area de atuação</span>
+                            <span class="info-box-number text-center text-muted mb-0">
+                                <%= I18n.t("enums.position.career.#{position.career}") %>
                             </span>
-                            <span class="description">Data da publicação: <%= position.created_at.strftime("%d/%m/%Y") %></span>
+                        </div>
                     </div>
                 </div>
-
-                <p class="text-muted">
-                    <%= position.company.summary %>
-                </p>
-                <br>
-                <div class="text-muted">
-                    <p class="text-sm">Client Company
-                        <b class="d-block">Deveint Inc</b>
-                    </p>
-                    <p class="text-sm">Project Leader
-                        <b class="d-block">Tony Chicken</b>
-                    </p>
+                <div class="col-12 col-sm-4">
+                    <div class="info-box bg-light">
+                        <div class="info-box-content">
+                            <% if position.remote %>
+                                <span class="info-box-text text-center text-muted">Local de trabalho</span>
+                                <span class="info-box-number text-center text-muted mb-0">Remoto</span>
+                            <% else %>
+                                <span class="info-box-text text-center text-muted">Local de trabalho</span>
+                                <span class="info-box-number text-center text-muted mb-0"><%= position.state %></span>
+                            <% end %>
+                        </div>
+                    </div>
                 </div>
-                <h5 class="mt-5 text-muted">Project files</h5>
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Functional-requirements.docx</a>
-                    </li>
-                    <li>
-                        <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
-                    </li>
-                    <li>
-                        <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> Email-from-flatbal.mln</a>
-                    </li>
-                    <li>
-                        <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i> Logo.png</a>
-                    </li>
-                    <li>
-                        <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Contract-10_12_2014.docx</a>
-                    </li>
-                </ul>
-                <div class="text-center mt-5 mb-3">
-                    <a href="#" class="btn btn-sm btn-primary">Add files</a>
-                    <a href="#" class="btn btn-sm btn-warning">Report contact</a>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h4>Descrição da vaga</h4>
+                    <div class="post">
+                        <p>
+                            <%= position.description %>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <a href="#" class="btn btn-secondary">Cancel</a>
-        <input type="submit" value="Create new Project" class="btn btn-success float-right">
+        <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+            <div class="row mb-4">
+                <div class="user-block">
+                        <%= image_tag position.company.logo, class: "img-circle img-bordered-sm", style: "max-height: 400px" %>
+                        <span class="username">
+                        <a href="#"><%= position.company.name %></a>
+                        </span>
+                        <span class="description">Data da publicação: <%= position.created_at.strftime("%d/%m/%Y") %></span>
+                </div>
+            </div>
+
+            <p class="text-muted">
+                <%= position.company.summary %>
+            </p>
+            <br>
+            <div class="text-muted">
+                <p class="text-sm">Client Company
+                    <b class="d-block">Deveint Inc</b>
+                </p>
+                <p class="text-sm">Project Leader
+                    <b class="d-block">Tony Chicken</b>
+                </p>
+            </div>
+            <h5 class="mt-5 text-muted">Project files</h5>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Functional-requirements.docx</a>
+                </li>
+                <li>
+                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
+                </li>
+                <li>
+                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> Email-from-flatbal.mln</a>
+                </li>
+                <li>
+                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i> Logo.png</a>
+                </li>
+                <li>
+                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Contract-10_12_2014.docx</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
