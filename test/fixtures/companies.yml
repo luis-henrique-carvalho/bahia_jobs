@@ -5,7 +5,6 @@
 #  id             :uuid             not null, primary key
 #  contact_email  :string
 #  contact_phone  :string
-#  description    :text
 #  employee_count :integer
 #  founded_date   :date
 #  name           :string
