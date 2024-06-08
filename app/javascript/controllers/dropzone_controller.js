@@ -116,22 +116,21 @@ export default class extends Controller {
       </div>
       <div class="table table-striped files" id="previews">
         <div id="template" class="row mt-2 d-flex justify-content-between">
-          <div class="d-flex flex-row col-auto">
-            <div class="col-auto">
-              <span class="preview"
-                ><img src="data:," alt="" data-dz-thumbnail
-              /></span>
-            </div>
-            <div class="col d-flex align-items-center">
-              <p class="mb-0">
-                <span class="lead" data-dz-name></span>
-                (<span data-dz-size></span>)
-              </p>
-              <strong class="error text-danger" data-dz-errormessage></strong>
-            </div>
-          </div>
-
-          <div class="col-auto d-flex align-items-cente" >
+        <div class="d-flex flex-column flex-md-row col-auto text-center text-md-start">
+        <div class="col-auto d-flex align-items-center justify-content-center">
+          <span class="preview">
+            <img src="data:," alt="" data-dz-thumbnail />
+          </span>
+        </div>
+        <div class="col d-flex flex-column flex-md-row align-items-center">
+          <p class="mb-0">
+            <span class="lead" data-dz-name></span>
+            (<span data-dz-size></span>)
+          </p>
+          <strong class="error text-danger" data-dz-errormessage></strong>
+        </div>
+      </div>
+          <div class="col-auto d-flex align-items-center justify-content-center">
             <div class="btn-group">
               <button data-dz-remove class="btn btn-danger delete">
                 <i class="fas fa-trash"></i>
