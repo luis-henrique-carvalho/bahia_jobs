@@ -15,78 +15,72 @@
     <li class="breadcrumb-item"><%= link_to "Vagas", positions_path %></li>
     <li class="breadcrumb-item active">Sua empresa</li>
   <% end %>
-   <section class="content">
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-md-3">
-               <div class="card card-primary card-outline">
-                  <div class="card-body box-profile">
-                    <div class="text-center">
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+              <div class="text-center">
+                <% if @company.logo.attached? %>
                     <%= image_tag @company.logo, class: "profile-user-img img-fluid img-circle", style: "max-width: 100px; min-height: 100px; object-fit: cover;", alt: "Company profile picture" %>
-                    </div>
-                     <h3 class="profile-username text-center"> <%= @company.name %> </h3>
-                    <%# <p class="text-muted text-center">Software Engineer</p>%>
-                     <ul class="list-group list-group-unbordered mb-3">
-                        <li class="list-group-item">
-                           <b>Funcionários</b><a class="float-right"><%= @company.employee_count %></a>
-                        </li>
-                        <li class="list-group-item">
-                           <b>Fundação</b> <a class="float-right"><%= @company.founded_date&.strftime("%m/%Y") %></a>
-                        </li>
-                        <li class="list-group-item">
-                           <b>Criador</b> <a class="float-right"><%= @company.user.id %></a>
-                        </li>
-                     </ul>
-                     <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-                  </div>
-               </div>
+                <% else %>
+                    <%= image_tag "default-company-logo.png", class: "profile-user-img img-fluid img-circle", style: "max-width: 100px; min-height: 100px; object-fit: cover;", alt: "Company profile picture" %>
+                <% end %>
+              </div>
+              <h3 class="profile-username text-center"><%= @company.name %></h3>
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Funcionários</b> <a class="float-right"><%= @company.employee_count %></a>
+                </li>
+                <li class="list-group-item">
+                  <b>Fundação</b> <a class="float-right"><%= @company.founded_date&.strftime("%m/%Y") %></a>
+                </li>
+                <li class="list-group-item">
+                  <b>Criador</b> <a class="float-right"><%= @company.user.id %></a>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
             </div>
-            <div class="col-md-9">
-
-
-<div class="card" data-controller="tabs">
-    <div class="card-header p-2">
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link active" href="#about"
-                data-action="click->tabs#showTab"
-                data-tabs-target="tab">ABOUT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#timeline"
-                data-action="click->tabs#showTab"
-                data-tabs-target="tab">Timeline</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#settings"
-                data-action="click->tabs#showTab"
-                data-tabs-target="tab">Settings</a>
-            </li>
-        </ul>
-    </div>
-    <div class="card-body">
-        <div class="tab-content", style="min-height: 400px">
-            <div class="tab-pane active" id="about" data-tabs-target="content">
-                <div class="post">
-                    <h3>Resumo</h3>
-                    <p>
-                        <%= @company.summary %>
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane" id="timeline" data-tabs-target="content">
-                <h3>tab 2</h3>
-            </div>
-            <div class="tab-pane" id="settings" data-tabs-target="content">
-                <%= render "form", company: @company %>
-            </div>
+          </div>
         </div>
-    </div>
-</div>
 
-
+        <div class="col-md-9">
+          <div class="card" data-controller="tabs">
+            <div class="card-header p-2">
+              <ul class="nav nav-pills">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#about" data-action="click->tabs#showTab" data-tabs-target="tab">Sobre</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#timeline" data-action="click->tabs#showTab" data-tabs-target="tab">Vagas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#settings" data-action="click->tabs#showTab" data-tabs-target="tab">Editar</a>
+                </li>
+              </ul>
             </div>
-         </div>
+
+            <div class="card-body">
+              <div class="tab-content" style="min-height: 400px">
+                <div class="tab-pane active" id="about" data-tabs-target="content">
+                  <div class="post">
+                    <h3>Resumo</h3>
+                    <p><%= @company.summary %></p>
+                  </div>
+                </div>
+                <div class="tab-pane" id="timeline" data-tabs-target="content">
+                  <%= render "companies/components/company_positions_table", positions: @company.positions %>
+                </div>
+                <div class="tab-pane" id="settings" data-tabs-target="content">
+                  <%= render "companies/components/form", company: @company %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-   </section>
+    </div>
+  </section>
 </div>

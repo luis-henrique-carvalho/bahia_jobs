@@ -10,7 +10,7 @@
 
       <div class="row">
         <div class="col-md-6">
-          <%= f.input :founded_date %>
+          <%= f.input :founded_date, as: :date, html5: true %>
         </div>
         <div class="col-md-6">
           <%= f.input :employee_count %>
@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-group">
-        <%= render "image_form", f: f %>
+        <%= render "companies/components/image_form", f: f %>
       </div>
     </div>
   </div>

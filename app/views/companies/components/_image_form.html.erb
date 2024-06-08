@@ -10,7 +10,7 @@
 
 <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone"
                                                     data-dropzone-max-file-size="1"
-                                                    data-dropzone-accepted-files="jpg png jpeg"
+                                                    data-dropzone-accepted-files="image/*"
                                                     data-dropzone-max-files="1"
                                                     data-upload-multiple="false">
   <%= f.file_field :logo, direct_upload: true, data: { dropzone_target: 'input' } %>

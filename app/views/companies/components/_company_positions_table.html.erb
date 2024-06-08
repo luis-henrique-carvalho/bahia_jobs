@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Simple Full Width Table</h3>
+        <div class="card-tools">
+            <ul class="pagination pagination-sm float-right">
+                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">»</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 10px">id</th>
+                    <th>Nome</th>
+                    <th>Status</th>
+                    <th style="width: 40px">Publicação</th>
+                    <th style="width: 40px">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% positions.each do |company_position| %>
+                    <tr>
+                        <td><%= company_position.id %></td>
+                        <td><%= company_position.name %></td>
+                        <td><span class="badge badge-success">Ativo</span></td>
+                        <td><%= company_position.created_at&.strftime("%d/%m/%Y") %></td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-primary">Editar</a>
+                            <a href="#" class="btn btn-sm btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
