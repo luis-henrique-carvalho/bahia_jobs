@@ -49,9 +49,9 @@
             <div class="row mb-4">
                 <div class="user-block">
                         <% if position.company.logo.attached? %>
-                            <%= image_tag position.company.logo, class: "img-circle img-bordered-sm", style: "max-width: 100px; min-height: 100px; object-fit: cover;", alt: "Company profile picture" %>
+                            <%= image_tag position.company.logo, class: "img-circle img-bordered-sm", style: "max-width: 100px; object-fit: cover;", alt: "Company profile picture" %>
                         <% else %>
-                            <%= image_tag "default-company-logo.png", class: "img-circle img-bordered-sm", style: "max-width: 400px; object-fit: cover;", alt: "Company profile picture" %>
+                            <%= image_tag "default-company-logo.png", class: "img-circle img-bordered-sm", style: "max-width: 100px; object-fit: cover;", alt: "Company profile picture" %>
                         <% end %>
                         <span class="username">
                         <a href="#"><%= position.company.name %></a>
