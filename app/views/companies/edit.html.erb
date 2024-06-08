@@ -8,5 +8,7 @@
     <div class="card-header">
         <h3 class="card-title pt-1">Empresa: <%=@company.name %></h3>
     </div>
-    <%= render "companies/components/form", company: @company %>
+    <%= turbo_frame_tag "edit-company" do %>
+      <%= render "companies/components/form", company: @company %>
+    <% end %>
 </div>
