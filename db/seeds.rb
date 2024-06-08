@@ -4,26 +4,22 @@
 #
 # Example:
 #
-%w[
-  Rails Ruby React Angular Vue Ember
-  Node.js PostgreSQL MongoDB Redis GraphQL RESTful\ API
-  Docker Kubernetes AWS GCP Azure CI/CD TDD BDD DDD SOLID OOP FP DDD Microservices
-  Agile Scrum Kanban Lean XP Waterfall RUP RAD DevOps Git SVN Mercurial Bitbucket GitHub GitLab
+[
+  'Rails', 'Ruby', 'React', 'Angular', 'Vue', 'Ember', 'Node.js', 'PostgreSQL', 'MongoDB', 'Redis', 'GraphQL',
+  'RESTful API', 'Docker', 'Kubernetes', 'AWS', 'GCP', 'Azure', 'CI/CD', 'TDD', 'BDD', 'DDD', 'SOLID', 'OOP', 'FP',
+  'DDD', 'Microservices', 'Agile', 'Scrum', 'Kanban', 'Lean', 'XP', 'Waterfall', 'RUP', 'RAD', 'DevOps', 'Git', 'SVN',
+  'Mercurial', 'Bitbucket', 'GitHub', 'GitLab'
 ].each do |tag|
   Tag.find_or_create_by(name: tag)
 end
-
 
 user = User.find_or_create_by(email: 'admin@admin') do |u|
   u.password = '123123'
 end
 
-company = Company.find_or_create_by(name: 'Company') do |c|
-  c.url = 'https://company.com'
-  c.user = user
-end
+company = FactoryBot.create(:company, user:)
 
 500.times do
-  position = FactoryBot.create(:position, company: company)
+  position = FactoryBot.create(:position, company:)
   position.tags << Tag.all.sample(3)
 end
