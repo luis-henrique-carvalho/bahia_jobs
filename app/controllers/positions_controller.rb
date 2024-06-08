@@ -69,7 +69,7 @@ class PositionsController < ApplicationController
   end
 
   def set_search
-    @search = Position.includes(:tags, :company).ransack(params[:q])
+    @search = Position.includes(:tags, :company).order(created_at: :desc).ransack(params[:q])
   end
 
   # Only allow a list of trusted parameters through.

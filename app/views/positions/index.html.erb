@@ -1,21 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<%= search_form_for @search, url: positions_path, method: :get, class: "position-relative", data: { turbo_frame: "positions_frame" } do |form| %>
-  <div class="row col-auto g-2">
-    <div class="form-group">
-      <%= form.label :tags_id_in, "Pesquise sua vaga por Tags" %>
-      <%= form.select :tags_id_in, Tag.all.map { |tag| [tag.name, tag.id] }, { include_blank: false },
-      { multiple: true, class: "form-control select2", data: { controller: "select2" }, onchange: "this.form.requestSubmit()" } %>
-    </div>
-  </div>
-<% end %>
+<%= render "shared/content_header", page_title: "Lista de vagas" %>
 
-<h1>Positions</h1>
+<div class="d-flex justify-content-center content-header">
+  <%= search_form_for @search, url: positions_path, method: :get, class: "position-relative col-md-6", data: { turbo_frame: "positions_frame" } do |form| %>
+    <div class="form-group d-flex flex-column justify-content-center align-items-center">
+      <%= form.label :tags_id_in, "Pesquise sua vaga por Tags" %>
+      <%= form.select :tags_id_in, Tag.all.pluck(:name,:id), { include_blank: false }, { multiple: true, class: "form-control select2", data: { controller: "select2" }, onchange: "this.form.requestSubmit()" } %>
+    </div>
+  <% end %>
+</div>
 
 <%= turbo_frame_tag "positions_frame" do %>
+  <div class="d-flex flex-wrap">
     <% @positions.each do |position| %>
       <%= render "position_card", position: position %>
     <% end %>
+  </div>
 <% end %>
 
 <%= link_to "New position", new_position_path %>

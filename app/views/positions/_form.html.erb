@@ -21,8 +21,8 @@
       <%= f.input :state, wrapper_html: { class: 'col' } %>
     </div>
 
-    <%= f.input :summary %>
-    <%= f.input :description %>
+    <%= f.input :summary , input_html: { rows: 5 } %>
+    <%= f.input :description, input_html: { rows: 10 } %>
     <div class="form-group">
       <div class="custom-control custom-switch">
         <%= f.check_box :publish, class: 'custom-control-input' %>

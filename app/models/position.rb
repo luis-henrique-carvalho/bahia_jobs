@@ -54,6 +54,9 @@ class Position < ApplicationRecord
 
   validates_presence_of :name, :career, :contract, :company_id
 
+  # validade max caracter in summary
+  validates :summary, length: { maximum: 500 }
+
   scope :with_tags, lambda { |tag_names|
     joins(:tags).where(tags: { name: tag_names }).distinct
   }
