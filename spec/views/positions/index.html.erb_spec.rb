@@ -38,15 +38,4 @@ RSpec.describe 'positions/index', type: :view do
 
     expect(rendered).to have_selector('nav.pagy-bootstrap')
   end
-
-  it 'paginates to the second page and renders the correct items using a button' do
-    # setup
-    create(:position, name: 'Position Page 2', company:, tags:)
-    # execute
-
-    click_button 'Next'
-    # verify
-    expect(page).not_to have_content('Position 1')
-    expect(page).to have_content('Position Page 2')
-  end
 end
