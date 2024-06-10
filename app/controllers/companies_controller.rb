@@ -2,9 +2,8 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
   before_action :redirect_if_company_present, only: [:new]
   before_action :purge_logo, only: [:update]
-  # before_action :authenticate_user!
-
-  # GET /companies or /companies.json
+  before_action :authenticate_user!
+  before_action :authorize_company, only: %i[edit update destroy]
 
   def index
     @pagy, @companies = pagy(Company.order(updated_at: :desc), items: 5)
@@ -20,18 +19,14 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # GET /companies/1 or /companies/1.json
   def show; end
 
-  # GET /companies/new
   def new
     @company = current_user.build_company
   end
 
-  # GET /companies/1/edit
   def edit; end
 
-  # POST /companies or /companies.json
   def create
     @company = current_user.build_company(company_params)
 
@@ -46,7 +41,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /companies/1 or /companies/1.json
   def update
     respond_to do |format|
       if @company.update(company_params)
@@ -59,7 +53,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # DELETE /companies/1 or /companies/1.json
   def destroy
     @company.destroy!
 
@@ -71,12 +64,14 @@ class CompaniesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def authorize_company
+    authorize @company, policy_class: CompanyPolicy
+  end
+
   def set_company
     @company = Company.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def company_params
     params.require(:company).permit(:name, :url, :logo, :description, :summary, :founded_date, :employee_count,
                                     :contact_email, :contact_phone)
