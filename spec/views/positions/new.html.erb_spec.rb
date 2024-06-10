@@ -1,46 +1,52 @@
 require 'rails_helper'
 
 RSpec.describe 'positions/new', type: :view do
-  let!(:company) { create(:company) }
+  let(:company) { create(:company) }
+  let(:all_tags) { create_list(:tag, 5) }
 
   before(:each) do
-    assign(:position, Position.new(
-                        name: 'MyString',
-                        career: 1,
-                        contract: 1,
-                        remote: false,
-                        city: 'MyString',
-                        state: 'MyString',
-                        summary: 'MyText',
-                        description: 'MyText',
-                        publish: false,
-                        company:
-                      ))
+    I18n.locale = 'pt-BR'
+    assign(:position, Position.new(company:))
+    assign(:tags, all_tags)
+    render
   end
 
-  it 'renders new position form' do
+  it 'renders new position form with Simple Form inputs and tag selection' do
     render
-
     assert_select 'form[action=?][method=?]', positions_path, 'post' do
       assert_select 'input[name=?]', 'position[name]'
 
-      assert_select 'input[name=?]', 'position[career]'
+      assert_select 'select[name=?]', 'position[career]' do
+        Position.careers.each do |key, _value|
+          assert_select 'option', Position.careers.keys.map(&:to_s).map(&:humanize).include?(key.to_s.humanize)
+        end
+      end
 
-      assert_select 'input[name=?]', 'position[contract]'
-
-      assert_select 'input[name=?]', 'position[remote]'
+      assert_select 'select[name=?]', 'position[contract]' do
+        Position.contracts.each do |key, _value|
+          assert_select 'option', Position.contracts.keys.map(&:to_s).map(&:humanize).include?(key.to_s.humanize)
+        end
+      end
+      assert_select 'input[type=checkbox][name=?]', 'position[remote]'
 
       assert_select 'input[name=?]', 'position[city]'
-
       assert_select 'input[name=?]', 'position[state]'
 
       assert_select 'textarea[name=?]', 'position[summary]'
-
       assert_select 'textarea[name=?]', 'position[description]'
 
-      assert_select 'input[name=?]', 'position[publish]'
+      assert_select 'input[type=checkbox][name=?]', 'position[publish]'
 
-      assert_select 'input[name=?]', 'position[company_id]'
+      assert_select 'select[multiple=multiple][name=?]', 'position[existing_tag_ids][]' do
+        all_tags.each do |tag|
+          assert_select 'option[value=?]', tag.id.to_s, text: tag.name
+        end
+      end
     end
+  end
+
+  it 'has submit button and cancel link' do
+    expect(rendered).to have_button('Salvar')
+    expect(rendered).to have_link('Cancelar', href: positions_path)
   end
 end

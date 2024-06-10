@@ -1,49 +1,52 @@
 require 'rails_helper'
+include Pagy::Backend
 
 RSpec.describe 'positions/index', type: :view do
   let!(:company) { create(:company) }
+  let!(:tags) { create_list(:tag, 3) }
+  let!(:position) { create(:position, company:, tags:) }
 
   before(:each) do
-    assign(:positions, [
-             Position.create!(
-               name: 'Name',
-               career: 2,
-               contract: 1,
-               remote: false,
-               city: 'City',
-               state: 'State',
-               summary: 'MyText',
-               description: 'MyText',
-               publish: false,
-               company:
-             ),
-             Position.create!(
-               name: 'Name',
-               career: 2,
-               contract: 1,
-               remote: false,
-               city: 'City',
-               state: 'State',
-               summary: 'MyText',
-               description: 'MyText',
-               publish: false,
-               company:
-             )
-           ])
+    @search = Position.all.ransack(params[:q])
+    @pagy, @positions = pagy(@search.result)
+
+    render
   end
 
-  it 'renders a list of positions' do
-    render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('Name'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(3.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('City'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('State'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('MyText'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('MyText'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(company.to_s), count: 2
+  it 'renders a list of positions with correct details' do
+    # Assertions for the index view's main content
+    expect(rendered).to match(/Lista de vagas/)
+    expect(rendered).to match(/Pesquise sua vaga por Tags/)
+
+    # Assertions for each position card
+    @positions.each do |position|
+      expect(rendered).to match(/#{position.name}/)
+      expect(rendered).to match(/#{position.company.name}/)
+      expect(rendered).to match(/#{position.summary}/)
+      expect(rendered).to match(/#{position.created_at.strftime('%d/%m/%Y')}/)
+
+      if position.remote
+        expect(rendered).to match(/Remoto/)
+      else
+        expect(rendered).to match(/#{position.state}/)
+      end
+
+      position.tags.each do |tag|
+        expect(rendered).to match(/#{tag.name}/)
+      end
+    end
+
+    expect(rendered).to have_selector('nav.pagy-bootstrap')
+  end
+
+  it 'paginates to the second page and renders the correct items using a button' do
+    # setup
+    create(:position, name: 'Position Page 2', company:, tags:)
+    # execute
+
+    click_button 'Next'
+    # verify
+    expect(page).not_to have_content('Position 1')
+    expect(page).to have_content('Position Page 2')
   end
 end

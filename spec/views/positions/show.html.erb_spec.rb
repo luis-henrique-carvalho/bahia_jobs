@@ -1,34 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe 'positions/show', type: :view do
-  let(:company) { create(:company) }
-
-  before(:each) do
-    assign(:position, Position.create!(
-                        name: 'Name',
-                        career: 2,
-                        contract: 2,
-                        remote: false,
-                        city: 'City',
-                        state: 'State',
-                        summary: 'MyText',
-                        description: 'MyText',
-                        publish: false,
-                        company:
-                      ))
+  let(:company) do
+    create(:company, name: 'Awesome Company')
   end
 
-  it 'renders attributes in <p>' do
+  let(:position) do
+    create(:position, company:, name: 'PJ Developer Position')
+  end
+
+  before(:each) do
+    assign(:position, position)
     render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/2/)
-    expect(rendered).to match(/3/)
-    expect(rendered).to match(/false/)
-    expect(rendered).to match(/City/)
-    expect(rendered).to match(/State/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/false/)
-    expect(rendered).to match(//)
+  end
+
+  it 'renders position and company attributes' do
+    expect(rendered).to match(position.name)
+    expect(rendered).to match(I18n.t("enums.position.career.#{position.career}"))
+    expect(rendered).to match(position.contract.upcase)
+    expect(rendered).to match(position.description)
+    expect(rendered).to match(position.company.name)
   end
 end
