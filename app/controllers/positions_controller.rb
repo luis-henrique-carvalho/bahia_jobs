@@ -2,28 +2,23 @@ class PositionsController < ApplicationController
   before_action :set_position, only: %i[show edit update destroy]
   before_action :set_search, only: %i[index]
 
-  # before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
-  # GET /positions or /positions.json
   def index
     @positions = @search.result
     @pagy, @positions = pagy(@positions)
   end
 
-  # GET /positions/1 or /positions/1.json
   def show; end
 
-  # GET /positions/new
   def new
     @position = Position.new
     @position.tags.build
     @existing_tags = Tag.all
   end
 
-  # GET /positions/1/edit
   def edit; end
 
-  # POST /positions or /positions.json
   def create
     @position = Position.new(position_params)
 
@@ -38,7 +33,6 @@ class PositionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /positions/1 or /positions/1.json
   def update
     respond_to do |format|
       if @position.update(position_params)
@@ -51,19 +45,18 @@ class PositionsController < ApplicationController
     end
   end
 
-  # DELETE /positions/1 or /positions/1.json
   def destroy
-    @position.destroy!
+    @company = @position.company
+    @position.destroy
 
     respond_to do |format|
-      format.html { redirect_to positions_url, notice: 'Position was successfully destroyed.' }
+      format.html { redirect_to company_positions_path(@company), notice: 'A posição foi excluída com sucesso.' }
       format.json { head :no_content }
     end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_position
     @position = Position.includes(:tags, :company).find(params[:id])
   end
@@ -72,7 +65,6 @@ class PositionsController < ApplicationController
     @search = Position.includes(:tags, :company).order(created_at: :desc).ransack(params[:q])
   end
 
-  # Only allow a list of trusted parameters through.
   def position_params
     params.require(:position).permit(:name, :career, :contract, :remote, :city, :state, :summary, :description,
                                      :publish, :company_id, existing_tag_ids: [], tags_attributes: %i[id name])

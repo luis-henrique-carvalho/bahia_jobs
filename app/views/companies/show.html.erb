@@ -74,8 +74,8 @@
                   </div>
                 </div>
                 <div class="tab-pane" id="timeline" data-tabs-target="content">
-                  <%= turbo_frame_tag "company_positions_table" do %>
-                    <%= render "companies/components/company_positions_table", positions: @company.positions %>
+                  <%= turbo_frame_tag "company_positions", src: company_positions_path(company_id: @company), loading: :lazy do %>
+                    Carregando...
                   <% end %>
                 </div>
                 <% if current_user == @company.user %>
