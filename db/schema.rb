@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_11_032145) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_11_032743) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,39 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_11_032145) do
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
+  create_table "educations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "school_name"
+    t.integer "degree", default: 0, null: false
+    t.string "field_of_study"
+    t.date "start_date"
+    t.date "end_date"
+    t.uuid "resume_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_educations_on_resume_id"
+  end
+
+  create_table "experiences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "company_name"
+    t.string "position"
+    t.date "start_date"
+    t.date "end_date"
+    t.text "description"
+    t.uuid "resume_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_experiences_on_resume_id"
+  end
+
+  create_table "languages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "proficiency"
+    t.uuid "resume_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_languages_on_resume_id"
+  end
+
   create_table "positions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.integer "career", null: false
@@ -92,6 +125,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_11_032145) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_resumes_on_user_id"
+  end
+
+  create_table "skills", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "proficiency"
+    t.uuid "resume_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_skills_on_resume_id"
   end
 
   create_table "taggings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -126,8 +168,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_11_032145) do
   add_foreign_key "applicants", "positions"
   add_foreign_key "applicants", "users"
   add_foreign_key "companies", "users"
+  add_foreign_key "educations", "resumes"
+  add_foreign_key "experiences", "resumes"
+  add_foreign_key "languages", "resumes"
   add_foreign_key "positions", "companies"
   add_foreign_key "resumes", "users"
+  add_foreign_key "skills", "resumes"
   add_foreign_key "taggings", "positions"
   add_foreign_key "taggings", "tags"
 end
