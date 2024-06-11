@@ -18,4 +18,10 @@
 #
 class Resume < ApplicationRecord
   belongs_to :user
+  has_many :experiences
+  has_many :educations
+  has_many :skills
+  has_many :languages
+
+  accepts_nested_attributes_for :experiences, :educations, :skills, :languages, allow_destroy: true
 end
