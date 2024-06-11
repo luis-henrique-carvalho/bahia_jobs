@@ -57,9 +57,11 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#timeline" data-action="click->tabs#showTab" data-tabs-target="tab">Vagas</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#settings" data-action="click->tabs#showTab" data-tabs-target="tab">Editar</a>
-                </li>
+                <% if current_user == @company.user %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#settings" data-action="click->tabs#showTab" data-tabs-target="tab">Editar</a>
+                  </li>
+                <% end %>
               </ul>
             </div>
 
@@ -72,11 +74,15 @@
                   </div>
                 </div>
                 <div class="tab-pane" id="timeline" data-tabs-target="content">
-                  <%= render "companies/components/company_positions_table", positions: @company.positions %>
+                  <%= turbo_frame_tag "company_positions_table" do %>
+                    <%= render "companies/components/company_positions_table", positions: @company.positions %>
+                  <% end %>
                 </div>
-                <div class="tab-pane" id="settings" data-tabs-target="content">
-                  <%= render "companies/components/form", company: @company %>
-                </div>
+                <% if current_user == @company.user %>
+                  <div class="tab-pane" id="settings" data-tabs-target="content">
+                    <%= render "companies/components/form", company: @company %>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>

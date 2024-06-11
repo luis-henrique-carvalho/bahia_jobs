@@ -54,7 +54,7 @@
                             <%= image_tag "default-company-logo.png", class: "img-circle img-bordered-sm", style: "max-width: 100px; object-fit: cover;", alt: "Company profile picture" %>
                         <% end %>
                         <span class="username">
-                        <a href="#"><%= position.company.name %></a>
+                        <%= link_to position.company.name, company_path(position.company) %>
                         </span>
                         <span class="description">Data da publicação: <%= position.created_at.strftime("%d/%m/%Y") %></span>
                 </div>
