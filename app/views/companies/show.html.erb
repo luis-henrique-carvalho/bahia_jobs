@@ -1,16 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @company %>
-
-<div>
-  <%= link_to "Edit this company", edit_company_path(@company) %> |
-  <%= link_to "Back to companies", companies_path %>
-
-  <%= button_to "Destroy this company", @company, method: :delete %>
-</div>
-
-
-<div class="content-wrapper" style="min-height: 2646.44px;">
+<div class="content-wrapper">
   <%= render "shared/content_header", page_title: "Sua empresa" do %>
     <li class="breadcrumb-item"><%= link_to "Vagas", positions_path %></li>
     <li class="breadcrumb-item active">Sua empresa</li>
