@@ -1,0 +1,13 @@
+
+<div id="toast">
+  <% flash.each do |flash_type, message| %>
+    <div data-controller="toast" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+      <div class="toast <%= bootstrap_class_for_flash(flash_type) %> fade show" role="alert" aria-live="assertive" data-bs-autohide="true" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body"><%= message %></div>
+          <button class="btn me-2 m-auto p-0" type="button" data-bs-dismiss="toast" aria-label="Close"><span class="fas fa-times"></span></button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

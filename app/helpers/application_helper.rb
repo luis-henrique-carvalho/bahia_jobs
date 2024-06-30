@@ -20,10 +20,10 @@ module ApplicationHelper
 
   def bootstrap_class_for_flash(flash_type)
     {
-      success: 'alert-success',
-      error: 'alert-danger',
-      alert: 'alert-warning',
-      notice: 'alert-info'
+      success: 'bg-success',
+      error: 'bg-danger',
+      alert: 'bg-warning',
+      notice: 'bg-info'
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
 
