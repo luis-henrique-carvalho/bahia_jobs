@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def dropzone_controller_div(&block)
     content_for :head_link do
       tag :link, rel: 'stylesheet', href: 'https://unpkg.com/dropzone@5/dist/min/dropzone.min.css', type: 'text/css'
@@ -14,5 +16,18 @@ module ApplicationHelper
     }
 
     content_tag(:div, class: 'dropzone dropzone-default dz-clickable', data:, &block)
+  end
+
+  def bootstrap_class_for_flash(flash_type)
+    {
+      success: 'bg-success',
+      error: 'bg-danger',
+      alert: 'bg-warning',
+      notice: 'bg-info'
+    }.stringify_keys[flash_type.to_s] || flash_type.to_s
+  end
+
+  def toast
+    turbo_stream.prepend('toast', partial: 'shared/toast')
   end
 end

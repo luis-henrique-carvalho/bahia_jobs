@@ -49,8 +49,10 @@ class PositionsController < ApplicationController
     @company = @position.company
     @position.destroy
 
+    flash.now[:success] = 'Vaga deletada com sucesso!'
+
     respond_to do |format|
-      format.html { redirect_to company_positions_path(@company), notice: 'A posição foi excluída com sucesso.' }
+      format.turbo_stream { render turbo_stream: [update_positions, toast] }
       format.json { head :no_content }
     end
   end
@@ -59,6 +61,14 @@ class PositionsController < ApplicationController
 
   def set_position
     @position = Position.includes(:tags, :company).find(params[:id])
+  end
+
+  def update_positions
+    @positions = @company.positions
+    @pagy, @positions = pagy(@positions)
+
+    turbo_stream.update 'company_positions', partial: 'companies_positions/positions_table',
+                                             locals: { positions: @positions, pagy: @pagy }
   end
 
   def set_search
