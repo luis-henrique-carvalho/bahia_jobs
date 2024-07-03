@@ -24,13 +24,13 @@
           </a>
           <ul class="dropdown-menu">
             <% if current_user.present? %>
-              <% if current_user.company.present? %>
+              <% if current_user.company&.id.present? %>
                 <li>
                   <%= link_to 'Sua Empresa', company_path(current_user.company), class: 'dropdown-item' %>
                 </li>
               <% else %>
                 <li>
-                  <%= link_to 'Cadastrar Empresa', new_company_path, class: 'dropdown-item' %>
+                  <%= link_to 'Criar Empresa', new_company_path, class: 'dropdown-item' %>
                 </li>
               <% end %>
             <% end %>
