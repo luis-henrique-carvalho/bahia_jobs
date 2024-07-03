@@ -2,11 +2,11 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
   before_action :redirect_if_company_present, only: [:new]
   before_action :purge_logo, only: [:update]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :authorize_company, only: %i[edit update destroy]
 
   def index
-    @pagy, @companies = pagy(Company.order(updated_at: :desc), items: 5)
+    @pagy, @companies = pagy(Company.includes(:user).order(updated_at: :desc), items: 5)
 
     respond_to do |format|
       format.html

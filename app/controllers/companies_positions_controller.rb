@@ -2,7 +2,7 @@ class CompaniesPositionsController < ApplicationController
   before_action :set_company, only: [:index]
 
   def index
-    @positions = @company.positions
+    @positions = @company.positions.order(created_at: :desc)
     @pagy, @positions = pagy(@positions)
   end
 
