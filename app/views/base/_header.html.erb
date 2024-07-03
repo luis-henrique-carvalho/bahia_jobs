@@ -20,15 +20,23 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Empresa
+            Empresas
           </a>
           <ul class="dropdown-menu">
+            <% if current_user.present? %>
+              <% if current_user.company.present? %>
+                <li>
+                  <%= link_to 'Sua Empresa', company_path(current_user.company), class: 'dropdown-item' %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to 'Cadastrar Empresa', new_company_path, class: 'dropdown-item' %>
+                </li>
+              <% end %>
+            <% end %>
             <li>
-              <%= link_to 'Sua empresa', companies_path, class: 'dropdown-item' %>
+              <%= link_to 'Todas as Empresas', companies_path, class: 'dropdown-item' %>
             </li>
-            <li><a class="dropdown-item" href="#">Cadastrar empresa</a></li>
-            <li><a class="dropdown-item" href="#">Editar empresa</a></li>
-            <li><a class="dropdown-item" href="#">Excluir empresa</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

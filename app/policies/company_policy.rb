@@ -16,6 +16,10 @@ class CompanyPolicy < ApplicationPolicy
     edit?
   end
 
+  def show?
+    edit?
+  end
+
   def index?
     true
   end

@@ -2,28 +2,34 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th style="width: 10px">id</th>
         <th>Nome</th>
         <th>Status</th>
-        <th style="width: 40px">Publicação</th>
-        <th style="width: 40px">Ações</th>
+        <th>Publicação</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
       <% @positions.each do |position| %>
-      <tr>
-        <td><%= position.id %></td>
-        <td><%= position.name %></td>
-        <td><span class="badge badge-success">Ativo</span></td>
-        <td><%= position.created_at&.strftime("%d/%m/%Y") %></td>
-        <td>
-          <%= link_to "Visualizar", position, class: "btn btn-sm btn-info", data: { turbo_frame: "_top" } %>
-          <% if current_user == position.company.user %>
-          <%= link_to "Editar", edit_position_path(position), class: "btn btn-sm btn-primary", data: { turbo_frame: "_top" } %>
-          <%= button_to "Excluir", position, method: :delete, class: "btn btn-sm btn-danger" %>
-          <% end %>
-        </td>
-      </tr>
+        <tr>
+          <td class="text-truncate"><%= position.name %></td>
+          <td><span class="badge badge-success">Ativo</span></td>
+          <td><%= position.created_at&.strftime("%d/%m/%Y") %></td>
+          <td>
+            <div class="d-flex col justify-content-around gap-1">
+              <%= link_to position, class: "btn btn-sm btn-primary", data: { turbo_frame: "_top" } do %>
+                <i class="fas fa-play"></i>
+              <% end %>
+              <% if current_user == position.company.user %>
+                <%= link_to edit_position_path(position), class: "btn btn-sm btn-info", data: { turbo_frame: "_top" } do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+                <%= button_to position, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Tem certeza que deseja excluir esta posição?" } do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>

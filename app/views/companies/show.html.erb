@@ -26,7 +26,7 @@
                   <b>Fundação</b> <a class="float-right"><%= @company.founded_date&.strftime("%m/%Y") %></a>
                 </li>
                 <li class="list-group-item">
-                  <b>Criador</b> <a class="float-right"><%= @company.user.id %></a>
+                  <b>Criador</b> <a class="float-right"><%= @company.user.email %></a>
                 </li>
               </ul>
               <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
