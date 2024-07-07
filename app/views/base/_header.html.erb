@@ -1,73 +1,73 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-   <%= link_to root_path, class: 'navbar-brand' do %>
-      <span class="brand-text font-weight-light">BahiaJobs</span>
-   <% end %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Vagas
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Sua vagas</a></li>
-            <li><a class="dropdown-item" href="#">Cadastrar vagas</a></li>
-            <li><a class="dropdown-item" href="#">Editar vagas</a></li>
-            <li><a class="dropdown-item" href="#">Excluir vagas</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Empresas
-          </a>
-          <ul class="dropdown-menu">
-            <% if current_user.present? %>
-              <% if current_user.company.present? %>
-                <li>
-                  <%= link_to 'Sua Empresa', company_path(current_user.company), class: 'dropdown-item' %>
-                </li>
-              <% else %>
-                <li>
-                  <%= link_to 'Cadastrar Empresa', new_company_path, class: 'dropdown-item' %>
-                </li>
-              <% end %>
+  <%= link_to root_path, class: 'navbar-brand' do %>
+    <span class="brand-text font-weight-light">BahiaJobs</span>
+  <% end %>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- Vagas Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vagas</a>
+        <ul class="dropdown-menu">
+          <% if current_user.present? && current_user.company.present? %>
+            <li><%= link_to 'Suas vagas', company_positions_path(current_user.company), class: 'dropdown-item' %></li>
+            <li><%= link_to 'Cadastrar vaga', new_position_path, class: 'dropdown-item' %></li>
+          <% end %>
+          <li><%= link_to 'Todas as vagas', positions_path, class: 'dropdown-item' %></li>
+        </ul>
+      </li>
+
+      <!-- Empresas Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Empresas</a>
+        <ul class="dropdown-menu">
+          <% if current_user.present? %>
+            <% if current_user.company.present? %>
+              <li><%= link_to 'Sua Empresa', company_path(current_user.company), class: 'dropdown-item' %></li>
+            <% else %>
+              <li><%= link_to 'Cadastrar Empresa', new_company_path, class: 'dropdown-item' %></li>
             <% end %>
-            <li>
-              <%= link_to 'Todas as Empresas', companies_path, class: 'dropdown-item' %>
-            </li>
-          </ul>
+          <% end %>
+          <li><%= link_to 'Todas as Empresas', companies_path, class: 'dropdown-item' %></li>
+        </ul>
+      </li>
+
+      <!-- Aplicações Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Aplicações</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Suas aplicações</a></li>
+          <li><a class="dropdown-item" href="#">Cadastrar aplicações</a></li>
+          <li><a class="dropdown-item" href="#">Editar aplicações</a></li>
+          <li><a class="dropdown-item" href="#">Excluir aplicações</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Search Form -->
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <!-- User Authentication Links -->
+    <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Aplicaçções
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Sua aplicações</a></li>
-            <li><a class="dropdown-item" href="#">Cadastrar aplicações</a></li>
-            <li><a class="dropdown-item" href="#">Editar aplicações</a></li>
-            <li><a class="dropdown-item" href="#">Excluir aplicações</a></li>
-          </ul>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
         </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-         <% if user_signed_in? %>
-            <li class="nav-item">
-               <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-            </li>
-         <% else %>
-            <li class="nav-item dropdown">
-               <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item dropdown">
-               <%= link_to 'Cadastro', new_user_registration_path, class: 'nav-link' %>
-            </li>
-         <% end %>
-      </ul>
-    </div>
+        <li class="nav-item">
+          <%= link_to 'Cadastro', new_user_registration_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </nav>
