@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 col-sm-6">
                 <div class="callout callout-info">
-                    <%= link_to applicants_path(position), class: "link-primary" do %>
+                    <%= link_to position_applicants_path(position), class: "link-primary" do %>
                     Total inscritos <span class="float-right badge bg-primary"><%= position.applicants.count %></span>
                     <% end %>
                 </div>

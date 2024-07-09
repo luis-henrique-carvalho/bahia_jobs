@@ -1,0 +1,18 @@
+<div class="table-responsive scrollbar">
+  <table class="table able-bordered text-truncate">
+    <thead class="bg-body-secondary">
+      <tr>
+        <th class="align-middle p-3" scope="col">Nome</th>
+        <th class="align-middle" scope="col">E-mail</th>
+        <th class="align-middle" scope="col">Telefone</th>
+        <th class="align-middle" scope="col">Aplicação</th>
+        <th class="align-middle" scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @applicants.each do |applicant| %>
+        <%= render "applicant", applicant: applicant %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+<%= render "shared/content_header", page_title: "Visualizar Aplicações" do %>
+  <li class="breadcrumb-item"><%= link_to "Vagas", positions_path %></li>
+  <li class="breadcrumb-item active">Visualizar Aplicações</li>
+<% end %>
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title"> Todos os candidatos para a vaga <%= @position.name %> </h3>
+    </div>
+    <div class="card-body">
+        <%= render "applicants", applicants: @applicants %>
+    </div>
+</div>

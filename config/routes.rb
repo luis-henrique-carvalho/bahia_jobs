@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :applicants
-  resources :positions
+  resources :positions do
+    resources :applicants, only: [:index], controller: 'positions_applicants'
+  end
   resources :companies do
     resources :positions, only: [:index], controller: 'companies_positions'
   end
