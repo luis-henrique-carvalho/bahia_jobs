@@ -13,7 +13,7 @@
     <%= render @position %>
 
     <div class="card-footer text-right">
-      <%= link_to "Aplicar para vaga", @position, class: "btn btn-primary" %>
+      <%= link_to "Aplicar para a vaga", new_applicant_path(position_id: @position.id), class: "btn btn-primary" %>
       <%= link_to "Cancelar inscrição", positions_path, class: "btn btn-secondary" %>
     </div>
 </div>

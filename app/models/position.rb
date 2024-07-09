@@ -29,6 +29,10 @@
 class Position < ApplicationRecord
   belongs_to :company
 
+  has_many :applicants, dependent: :destroy
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
   enum career: {
     developer: 0,
     designer: 1,
@@ -46,9 +50,6 @@ class Position < ApplicationRecord
     pj: 1,
     frelancer: 2
   }
-
-  has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings
 
   accepts_nested_attributes_for :tags
 

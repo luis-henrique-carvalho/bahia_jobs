@@ -12,7 +12,8 @@ class ApplicantsController < ApplicationController
 
   # GET /applicants/new
   def new
-    @applicant = Applicant.new
+    @position = Position.find(params[:position_id])
+    @applicant = Applicant.new(user_id: current_user.id, position_id: @position.id)
   end
 
   # GET /applicants/1/edit
@@ -21,6 +22,7 @@ class ApplicantsController < ApplicationController
   # POST /applicants or /applicants.json
   def create
     @applicant = Applicant.new(applicant_params)
+    @applicant.user_id = current_user.id
 
     respond_to do |format|
       if @applicant.save
@@ -65,6 +67,6 @@ class ApplicantsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def applicant_params
-    params.require(:applicant).permit(:name, :email, :phone, :user_id, :position_id)
+    params.require(:applicant).permit(:name, :email, :phone, :position_id)
   end
 end
